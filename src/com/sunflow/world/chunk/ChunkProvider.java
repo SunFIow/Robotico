@@ -6,40 +6,36 @@ import com.sunflow.world.gen.ChunkGenerator;
 
 public class ChunkProvider {
 
-	private final World world;
+//	private final World world;
 	public final ChunkManager chunkManager;
-//	private final AtomicReferenceArray<Chunk>
 
 	private final long[] recentPositions = new long[4];
 	private final ChunkStatus[] recentStatuses = new ChunkStatus[4];
 	private final IChunk[] recentChunks = new IChunk[4];
 
 	public ChunkProvider(World world, ChunkGenerator generator) {
-		this.world = world;
+//		this.world = world;
 		this.chunkManager = new ChunkManager(generator);
 	}
 
 	public IChunk getChunk(int chunkX, int chunkY, ChunkStatus requiredStatus, boolean load) {
-		long i = ChunkPos.asLong(chunkX, chunkY);
+		long chunkPos = ChunkPos.asLong(chunkX, chunkY);
 
 		for (int j = 0; j < 4; ++j) {
-			if (i == this.recentPositions[j] && requiredStatus == this.recentStatuses[j]) {
+			if (chunkPos == this.recentPositions[j] && requiredStatus == this.recentStatuses[j]) {
 				IChunk ichunk = this.recentChunks[j];
 				if (ichunk != null || !load) {
 					return ichunk;
 				}
 			}
 		}
-		IChunk ichunk = this.func_217233_c(chunkX, chunkY, requiredStatus, load);
-		cacheChunk(i, ichunk, requiredStatus);
-		return ichunk;
-	}
 
-	private IChunk func_217233_c(int chunkX, int chunkZ, ChunkStatus requiredStatus, boolean load) {
-		ChunkPos chunkpos = new ChunkPos(chunkX, chunkZ);
-		long i = chunkpos.asLong();
-		ChunkHolder chunkholder = chunkManager.getChunkHolder(i);
-		return chunkholder.getOrCreateChunk(chunkManager, requiredStatus);
+		ChunkHolder chunkholder = this.chunkManager.getChunkHolder(chunkPos);
+		IChunk ichunk = chunkholder.getOrCreateChunk(this.chunkManager, requiredStatus);
+
+		this.cacheChunk(chunkPos, ichunk, requiredStatus);
+
+		return ichunk;
 	}
 
 	private void cacheChunk(long pos, IChunk chunk, ChunkStatus status) {

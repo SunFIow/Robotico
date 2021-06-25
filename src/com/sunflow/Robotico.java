@@ -28,7 +28,7 @@ public class Robotico extends GameBase {
 //			return chunk;
 //		});
 
-		world = new World(new SingleTileGenerator(Tiles.DEFAULT));
+		this.world = new World(new SingleTileGenerator(Tiles.DEFAULT));
 	}
 
 	@Override

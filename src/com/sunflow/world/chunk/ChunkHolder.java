@@ -4,10 +4,10 @@ import com.sunflow.util.math.ChunkPos;
 
 public class ChunkHolder {
 	private IChunk chunk;
-	private final ChunkPos pos;
+//	private final ChunkPos pos;
 
 	public ChunkHolder(ChunkPos chunkPos) {
-		this.pos = chunkPos;
+//		this.pos = chunkPos;
 	}
 
 	public void setChunk(IChunk chunk) {
@@ -15,11 +15,11 @@ public class ChunkHolder {
 	}
 
 	public IChunk getChunk() {
-		return chunk;
+		return this.chunk;
 	}
 
 	public IChunk getOrCreateChunk(ChunkManager manager, ChunkStatus status) {
-		if (chunk == null) manager.generateChunk(this, status);
-		return chunk;
+		if (this.chunk == null) manager.generateChunk(this, status);
+		return this.chunk;
 	}
 }

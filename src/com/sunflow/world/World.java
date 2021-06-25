@@ -13,16 +13,16 @@ public class World {
 	private ChunkProvider chunkProvider;
 
 	public World(ChunkGenerator generator) {
-		chunkProvider = new ChunkProvider(this, generator);
+		this.chunkProvider = new ChunkProvider(this, generator);
 	}
 
 	public TileState getTileState(TilePos pos) {
-		Chunk chunk = getChunk(pos);
+		Chunk chunk = this.getChunk(pos);
 		return chunk.getTileState(pos);
 	}
 
 	public TileState getTileState(int x, int y) {
-		Chunk chunk = getChunk(x, y);
+		Chunk chunk = this.getChunk(x, y);
 		return chunk.getTileState(x, y);
 	}
 
@@ -32,7 +32,7 @@ public class World {
 	}
 
 	public Chunk getChunk(int chunkX, int chunkY) {
-		return (Chunk) getChunk(chunkX, chunkY, ChunkStatus.FULL, true);
+		return (Chunk) this.getChunk(chunkX, chunkY, ChunkStatus.FULL, true);
 	}
 
 	public IChunk getChunk(int x, int y, ChunkStatus requiredStatus, boolean nonnull) {
@@ -44,7 +44,5 @@ public class World {
 		}
 	}
 
-	private ChunkProvider getChunkProvider() {
-		return chunkProvider;
-	}
+	private ChunkProvider getChunkProvider() { return this.chunkProvider; }
 }

@@ -14,12 +14,12 @@ public class ImageTile extends Tile {
 
 	public ImageTile(String name) {
 		super(name);
-		image = imageLoader.apply("resources/assets/" + "robotico" + "/textures/tiles/" + name + ".png");
+		this.image = imageLoader.apply("resources/assets/" + "robotico" + "/textures/tiles/" + name + ".png");
 	}
 
 	@Override
 	public void show(GameBase game, int x, int y) {
-		game.image(image, x, y, 1, 1);
+		game.image(this.image, x, y, 1, 1);
 	}
 
 }

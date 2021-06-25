@@ -18,7 +18,7 @@ public class ChunkManager {
 		ChunkHolder holder = this.loadedChunks.get(chunkPosIn);
 		if (holder == null) {
 			holder = new ChunkHolder(new ChunkPos(chunkPosIn));
-			setChunkHolder(chunkPosIn, holder);
+			this.setChunkHolder(chunkPosIn, holder);
 		}
 		return holder;
 	}
@@ -28,7 +28,6 @@ public class ChunkManager {
 	}
 
 	public void generateChunk(ChunkHolder chunkHolder, ChunkStatus status) {
-		chunkHolder.setChunk(generator.generateChunk(chunkHolder, status));
+		chunkHolder.setChunk(this.generator.generateChunk(chunkHolder, status));
 	}
-
 }
