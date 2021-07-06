@@ -1,19 +1,24 @@
 package com.sunflow.world;
 
+import java.util.function.Function;
+
 import com.sunflow.tile.TileState;
 import com.sunflow.util.math.TilePos;
 import com.sunflow.world.chunk.Chunk;
 import com.sunflow.world.chunk.ChunkProvider;
 import com.sunflow.world.chunk.ChunkStatus;
 import com.sunflow.world.chunk.IChunk;
-import com.sunflow.world.gen.ChunkGenerator;
+import com.sunflow.world.storage.WorldInfo;
 
 public class World {
 
-	private ChunkProvider chunkProvider;
+	protected ChunkProvider chunkProvider;
+	protected final WorldInfo worldInfo;
 
-	public World(ChunkGenerator generator) {
-		this.chunkProvider = new ChunkProvider(this, generator);
+	public World(Function<World, ChunkProvider> provider) {
+//		this.chunkProvider = new ChunkProvider(this, generator);
+		this.chunkProvider = provider.apply(this);
+		this.worldInfo = new WorldInfo();
 	}
 
 	public TileState getTileState(TilePos pos) {
@@ -45,4 +50,7 @@ public class World {
 	}
 
 	private ChunkProvider getChunkProvider() { return this.chunkProvider; }
+
+	/** Returns the world's WorldInfo object */
+	public WorldInfo getWorldInfo() { return this.worldInfo; }
 }
