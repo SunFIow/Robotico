@@ -11,7 +11,7 @@ import com.sunflow.world.chunk.IChunk;
 
 public class DefaultChunkGenerator extends ChunkGenerator<DefaultChunkGenerator.Settings> {
 
-	public DefaultChunkGenerator(World world, BiomeProvider biomeProvider, Settings settings) { super(world, biomeProvider, settings); }
+	public DefaultChunkGenerator(World world, BiomeProvider biomeProvider, DefaultChunkGenerator.Settings settings) { super(world, biomeProvider, settings); }
 
 	@Override
 	public IChunk generateChunk(ChunkHolder chunkHolder, ChunkStatus status) {

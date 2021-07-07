@@ -1,4 +1,4 @@
-package com.sunflow.data;
+package net.minecraft.nbt;
 
 public class SunData {
 

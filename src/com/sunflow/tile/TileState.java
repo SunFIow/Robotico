@@ -1,6 +1,6 @@
 package com.sunflow.tile;
 
-import com.sunflow.data.SunData;
+import net.minecraft.nbt.SunData;
 
 public class TileState {
 	private Tile tile = Tiles.DEFAULT;
